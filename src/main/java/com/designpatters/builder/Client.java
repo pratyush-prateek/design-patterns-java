@@ -2,9 +2,12 @@ package com.designpatters.builder;
 
 public class Client {
     public static void main(String[] args) {
-        LunchOrder.Builder builder = new LunchOrder.Builder();
-        LunchOrder order = builder.bread("Brown bread").condiment("Mayo").meat("Chicken").dressing("Mustard").build();
-
-        System.out.println(order.getBread() + "," + order.getCondiment() + "," + order.getDressing() + "," + order.getMeat());
+        CarBuilder carBuilder = new CarBuilder();
+        CarManualBuilder carManualBuilder = new CarManualBuilder();
+        Builder manualBuilder = new CarManualBuilder();
+        Director.buildSUVCar(carBuilder);
+        Car suvCar = carBuilder.getProduct();
+        Director.buildSUVCarManual(carManualBuilder);
+        CarManual suvCarManual = carManualBuilder.getProduct();
     }
 }
