@@ -4,26 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Registry {
-    private Map<String,Item> items = new HashMap<String,Item>();
+    private Map<String,Product> items = new HashMap<String,Product>();
     public Registry() {
         this.loadItems();
     }
 
-    public Item createItem(String type) {
-        Item item = null;
+    public Product createItem(String type) {
+        Product product = null;
         try {
-            item = (Item)(items.get(type).clone());
+            product = (Product)(items.get(type).clone());
         }
-        catch (CloneNotSupportedException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
-        return item;
+        return product;
     }
 
     private void loadItems() {
         Movie movie = new Movie();
         movie.setDuration(28);
-        movie.setRating(8);
         movie.setPrice(400);
         movie.setTitle("My movie");
 
