@@ -4,40 +4,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
+        //Remote mapping
         /*
-        * Problem statement - There are many types of lights. The client needs to toggle one of them on or off
-        * or be able to toggle all of them at once. Need to use the command pattern here */
+        * 0 - toggle kitchen light
+        * 1 - toggle living room light
+        * 2 - toggle kitchen fan
+        * 3 - set kitchen fan low
+        * 4 - set kitchen fan medium
+        * 5 - set kitchen fan high
+        * 6 - undo last
+        * */
 
-        Light bedroomLight = new Light();
+        //Reciever classes
+        Light livingRoomLight = new Light();
         Light kitchenLight = new Light();
-        Light livingroomLight = new Light();
+        Fan kitchenFan  = new Fan();
 
-        List<Light> lights = new ArrayList<Light>();
-        lights.add(bedroomLight);
-        lights.add(kitchenLight);
-        lights.add(livingroomLight);
-
-        Command toggleCommandBedroomLight = new ToggleCommand(bedroomLight);
-        Command toggleCommandKitchenLight = new ToggleCommand(kitchenLight);
-        Command toggleCommandLivingRoomLight = new ToggleCommand(livingroomLight);
-        Command toggleAllOn = new TurnAllOnCommand(lights);
-        Command toggleAllOff = new TurnAllOffCommand(lights);
-
-        Switch lightSwitch = new Switch();
-        //Toggle kitchen and bedroom light
-        lightSwitch.storeAndExecute(toggleCommandKitchenLight);
-        lightSwitch.storeAndExecute(toggleCommandBedroomLight);
-
-        //Toggle all On
-        lightSwitch.storeAndExecute(toggleAllOn);
-
-        //Toggle living room light off
-        lightSwitch.storeAndExecute(toggleCommandLivingRoomLight);
-
-        //Toggle all Off
-        lightSwitch.storeAndExecute(toggleAllOff);
+        //Commands
+        List<Command> commands = new ArrayList<>();
+        commands.add(new ToggleLightCommand(kitchenLight));
+        commands.add(new ToggleLightCommand(livingRoomLight));
+        commands.add(new ToggleFanCommand(kitchenFan));
+        commands.add(new SetFanSpeedLowCommand(kitchenFan));
+        commands.add(new SetFanSpeedMediumCommand(kitchenFan));
+        commands.add(new SetFanSpeedHigh(kitchenFan));
 
 
+        //Remote controller instance
+        RemoteController controller = RemoteController.getInstance(commands);
+
+        //Toggle kitchen light on
+        controller.executeCommand(0);
+
+        //Toggle living room light
+        controller.executeCommand(1);
+
+        //Toggle kitchen fan
+        controller.executeCommand(2);
+
+        //set kitchen fan high
+        controller.executeCommand(5);
+
+        //set living room light off
+        controller.executeCommand(1);
+
+        //set kitchen fan slow
+        controller.executeCommand(3);
+
+        //undo last
+        controller.undoLastCommand();
     }
+
 }
