@@ -1,19 +1,12 @@
 package com.designpatters.chainofresponsibility;
 
 public class Request {
-    private int amount;
-    private RequestType requestType;
-
-    public Request(int amount, RequestType requestType) {
-        this.requestType = requestType;
-        this.amount = amount;
+    private int payload;
+    public Request(int payload) {
+        this.payload = payload;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public RequestType getRequestType() {
-        return requestType;
+    public int getPayload() {
+        return this.payload;
     }
 }
