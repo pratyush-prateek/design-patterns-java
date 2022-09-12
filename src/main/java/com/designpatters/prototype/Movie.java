@@ -1,35 +1,32 @@
 package com.designpatters.prototype;
 
 public class Movie extends Product{
-    private int duration;
-    public Movie(){}
+    private int playTime;
+    private int rating;
+    public Movie() {}
     public Movie(Movie source) {
         super(source);
-        this.duration = source.getDuration();
-    }
-    public int getDuration() {
-        return duration;
+        this.playTime = source.playTime;
+        this.rating = source.rating;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    @Override
     public Product clone() {
         return new Movie(this);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringRep = new StringBuilder();
-        stringRep.append(this.getTitle());
-        stringRep.append(",");
-        stringRep.append(this.getDuration());
-        stringRep.append(",");
-        stringRep.append(this.getPrice());
-        stringRep.append(",");
-        stringRep.append(this.getUrl());
-        return stringRep.toString();
+    public int getPlayTime() {
+        return playTime;
+    }
+
+    public void setPlayTime(int playTime) {
+        this.playTime = playTime;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }

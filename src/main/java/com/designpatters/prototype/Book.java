@@ -1,22 +1,32 @@
 package com.designpatters.prototype;
 
-public class Book extends Product {
-    private int numPages;
-    public Book(){}
+public class Book extends Product{
+    private int numberOfPages;
+    private String author;
+    public Book() {}
     public Book(Book source) {
         super(source);
-        this.numPages = source.getNumPages();
+        this.numberOfPages = source.numberOfPages;
+        this.author = source.author;
     }
-    @Override
+
     public Product clone() {
         return new Book(this);
     }
 
-    public int getNumPages() {
-        return numPages;
+    public int getNumberOfPages() {
+        return numberOfPages;
     }
 
-    public void setNumPages(int numPages) {
-        this.numPages = numPages;
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

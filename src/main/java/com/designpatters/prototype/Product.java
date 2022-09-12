@@ -1,41 +1,39 @@
 package com.designpatters.prototype;
 
 public abstract class Product {
-    private String title;
-    private String url;
-    private int price;
-
+    private int cost;
+    private String category;
+    private String imageUrl;
     public Product() {}
     public Product(Product source) {
-        this();
-        this.title = source.getTitle();
-        this.price = source.getPrice();
-        this.url = source.getUrl();
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+        this.cost = source.cost;
+        this.category = source.category;
+        this.imageUrl = source.imageUrl;
     }
 
     public abstract Product clone();
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

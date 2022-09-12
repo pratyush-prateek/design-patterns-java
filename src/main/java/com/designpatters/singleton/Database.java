@@ -1,8 +1,8 @@
 package com.designpatters.singleton;
 
+//Thread safe
 public class Database {
 
-    //Not thread safe
     private static Database instance;
     private Database() {
         //initialization code
